@@ -1,0 +1,35 @@
+{
+  "name": "preact-app-temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "VV",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@yushijinhun/three-minifier-webpack": "^0.1.7",
+    "babel-loader": "^8.0.2",
+    "copy-webpack-plugin": "^6.0.3",
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^5.0.9"
+  },
+  "dependencies": {
+    "preact": "^10.4.6",
+    "styled-components": "^5.1.1",
+    "three": "^0.118.3"
+  }
+}
