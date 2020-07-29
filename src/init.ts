@@ -5,7 +5,12 @@ import {
   controls,
   renderer,
 } from './utils/constants';
-import { PCFSoftShadowMap, LinearEncoding, LinearToneMapping } from 'three';
+import {
+  PCFSoftShadowMap,
+  LinearEncoding,
+  LinearToneMapping,
+  Object3D,
+} from 'three';
 import Lights from './components/Lights';
 import Ground from './components/Ground';
 import {
@@ -15,7 +20,7 @@ import {
   onWindowResize,
 } from './utils';
 
-export default () => {
+export default function (): void {
   // CAMERA SET UP
   camera.near = 1;
   camera.position.set(cameraPosStart.x, cameraPosStart.y, cameraPosStart.z);
@@ -42,8 +47,8 @@ export default () => {
   renderer.autoClear = true;
   renderer.physicallyCorrectLights = true;
 
-  const lights = Lights();
-  const ground = Ground();
+  const lights: Object3D = Lights();
+  const ground: Object3D = Ground();
 
   scene.add(lights);
   scene.add(ground);
@@ -59,4 +64,4 @@ export default () => {
   window.addEventListener('resize', onWindowResize, false);
 
   // END
-};
+}

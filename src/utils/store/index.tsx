@@ -1,6 +1,22 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useReducer, Dispatch } from 'react';
 
-const initialState = {
+interface IState {
+  currentModelName: string;
+  showMenu: boolean;
+  menuItems: any[];
+  models: any[];
+  matIdx: number;
+  objIdx: number;
+  objectUUID: string;
+  objectID: number;
+  orderImages: any[];
+  progress: number;
+  showForm: boolean;
+  loaded: boolean;
+}
+
+const initialState: IState = {
   currentModelName: 'NOT_EXISTING_MODEL',
   showMenu: false,
   menuItems: [],
@@ -15,12 +31,15 @@ const initialState = {
   loaded: false,
 };
 
-export const Context = createContext({
+export const Context = createContext<{
+  state: IState;
+  dispatch: Dispatch<any>;
+}>({
   state: initialState,
   dispatch: () => null,
 });
 
-const reducer = (state, action) => {
+const reducer = (state: IState, action: any) => {
   switch (action.type) {
     case 'SET_CURRENT_MODEL_NAME':
       return { ...state, currentModelName: action.payload };
@@ -51,11 +70,13 @@ const reducer = (state, action) => {
   }
 };
 
-export const StoreProvider = ({ children }) => {
+export const StoreProvider = (props: any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch }}>
+      {props.children}
+    </Context.Provider>
   );
 };
 

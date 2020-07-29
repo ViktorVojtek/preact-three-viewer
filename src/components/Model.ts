@@ -4,35 +4,39 @@ import {
   SpriteMaterial,
   MeshPhysicalMaterial,
   ObjectLoader,
+  Object3D,
   TextureLoader,
+  Texture,
 } from 'three';
 import { useStore } from '../utils/store';
 
-function MaterialIcon() {
+function MaterialIcon(): Sprite {
   const { dispatch } = useStore();
 
-  const spriteMap = new TextureLoader().load('../static/images/info.png');
-  const spriteMaterial = new SpriteMaterial({ map: spriteMap });
-  const sprite = new Sprite(spriteMaterial);
+  const spriteMap: Texture = new TextureLoader().load(
+    '../static/images/info.png'
+  );
+  const spriteMaterial: SpriteMaterial = new SpriteMaterial({ map: spriteMap });
+  const sprite: Sprite = new Sprite(spriteMaterial);
 
   sprite.name = 'Icon';
   sprite.position.set(0.65, 1.35, -0.05);
   sprite.scale.set(0.25, 0.25, 0.25);
 
-  sprite.callback = () => {
+  (sprite as any).callback = () => {
     dispatch({ type: 'TOGGLE_MENU', payload: true });
   };
 
   return sprite;
 }
 
-export default (model) => {
+export default function (model: any): Promise<Object3D> {
   const { dispatch } = useStore();
-  const traverseObject = (obj, mat) => {
+  const traverseObject = (obj: Object3D, mat: MeshPhysicalMaterial) => {
     obj.traverse((child) => {
       if (child) {
-        child.material = mat;
-        child.material.needsUpdate = true;
+        (child as any).material = mat;
+        (child as any).material.needsUpdate = true;
         child.castShadow = true;
       }
     });
@@ -41,13 +45,13 @@ export default (model) => {
   };
 
   return new Promise(function (resolve, reject) {
-    var objLoader = new ObjectLoader();
+    var objLoader: ObjectLoader = new ObjectLoader();
 
-    const textureLoader = new TextureLoader();
-    const materialIcon = MaterialIcon();
-    const group = new Group();
+    const textureLoader: TextureLoader = new TextureLoader();
+    const materialIcon: Sprite = MaterialIcon();
+    const group: Group = new Group();
 
-    const onLoaded = (object) => {
+    const onLoaded = (object: Object3D) => {
       object.position.set(
         model.position[0],
         model.position[1],
@@ -59,14 +63,14 @@ export default (model) => {
 
       textureLoader.load(
         model.texture.map,
-        (texture) => {
-          const material = new MeshPhysicalMaterial({
+        (texture: Texture) => {
+          const material: MeshPhysicalMaterial = new MeshPhysicalMaterial({
             map: texture,
             roughness: 0.25,
             reflectivity: 0.75,
           });
 
-          const updatedObject = traverseObject(object, material);
+          const updatedObject: Object3D = traverseObject(object, material);
 
           updatedObject.castShadow = true;
 
@@ -86,8 +90,12 @@ export default (model) => {
       );
     };
 
-    const onProgress = function (xhr) {
-      var percentage = +Math.round((xhr.loaded / xhr.total) * 100).toFixed(0);
+    const onProgress: (xhr: ProgressEvent<EventTarget>) => void = function (
+      xhr
+    ) {
+      var percentage: number = +Math.round(
+        (xhr.loaded / xhr.total) * 100
+      ).toFixed(0);
 
       if (percentage === 100) {
         dispatch({ type: 'SET_PROGRESS', payload: 0 });
@@ -98,10 +106,10 @@ export default (model) => {
       }
     };
 
-    const onError = function (error) {
-      reject(error);
+    const onError: (error: Error | ErrorEvent) => void = function (error) {
+      console.log(error);
     };
 
     objLoader.load(model.path, onLoaded, onProgress, onError);
   });
-};
+}

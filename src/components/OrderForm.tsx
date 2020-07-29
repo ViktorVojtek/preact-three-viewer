@@ -1,6 +1,10 @@
+import * as React from 'react';
 import styled from 'styled-components';
 import { useStore } from '../utils/store';
 
+interface IContainerProps {
+  show?: boolean;
+}
 const Container = styled.div`
   position: absolute;
   padding: 0.75rem;
@@ -9,7 +13,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   background-color: #fff;
-  display: ${({ show }) => (show ? 'flex' : 'none')};
+  display: ${({ show }: IContainerProps) => (show ? 'flex' : 'none')};
 `;
 
 const CloseBtn = styled.button`
@@ -67,7 +71,15 @@ const SubmitBtn = styled.button`
   }
 `;
 
-export default ({ show, data, images }) => {
+export default function ({
+  show,
+  data,
+  images,
+}: {
+  show: boolean;
+  data: any;
+  images: string[];
+}): JSX.Element {
   const { dispatch } = useStore();
   const htmlTimes = '&times;';
 
@@ -99,7 +111,9 @@ export default ({ show, data, images }) => {
         <H3>Objednaný produkt:</H3>
         {data ? <P>{`${data.vendor}: ${data.title}`}</P> : null}
         {images && images.length > 0
-          ? images.map((item, i) => <Img src={item} key={`img-${i}`} />)
+          ? images.map((item: string, i: number) => (
+              <Img src={item} key={`img-${i}`} />
+            ))
           : null}
         <SubmitBtn type='submit' disabled>
           Odoslať objednávku
@@ -107,4 +121,4 @@ export default ({ show, data, images }) => {
       </Form>
     </Container>
   );
-};
+}

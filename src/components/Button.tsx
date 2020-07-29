@@ -1,6 +1,10 @@
+import * as React from 'react';
 import styled from 'styled-components';
 import { useStore } from '../utils/store';
 
+interface IBtnWrapperProps {
+  left?: boolean;
+}
 const BtnWrapper = styled.button`
   border: 3px solid rgba(255, 255, 255, 0.75);
   border-radius: 50%;
@@ -15,12 +19,16 @@ const BtnWrapper = styled.button`
   min-width: 40px;
   min-height: 40px;
   color: #fff;
-  ${({ left }) => (left ? 'left: 10px;' : 'right: 10px;')}
+  ${({ left }: IBtnWrapperProps) => (left ? 'left: 10px;' : 'right: 10px;')}
   top: 45%;
   outline: none;
 `;
 
-export default ({ direction = 'left' }) => {
+export default function ({
+  direction = 'left',
+}: {
+  direction?: string;
+}): JSX.Element {
   const { state, dispatch } = useStore();
 
   const handleObject = () => {
@@ -43,4 +51,4 @@ export default ({ direction = 'left' }) => {
       }}
     />
   );
-};
+}

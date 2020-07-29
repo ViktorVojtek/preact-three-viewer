@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const threeMinifier = require('@yushijinhun/three-minifier-webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
@@ -13,13 +13,18 @@ module.exports = {
         options: { presets: ['@babel/env'] },
       },
       {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
     alias: {
       'react': 'preact/compat',
       'react-dom': 'preact/compat',

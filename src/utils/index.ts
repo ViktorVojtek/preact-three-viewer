@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Object3D } from 'three';
 import {
   camera,
   cameraPosStart,
@@ -12,13 +13,16 @@ import {
 import Model from '../components/Model';
 import { useStore } from './store';
 
-export const animate = function () {
+export function animate(): void {
   // requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
-};
+}
 
-export const useModels = (models, objIdx) => {
+export const useModels: (models: any, objIdx: number) => void = (
+  models,
+  objIdx
+) => {
   const { state, dispatch } = useStore();
   const { currentModelName, matIdx } = state;
 
@@ -30,11 +34,11 @@ export const useModels = (models, objIdx) => {
 
           dispatch({ type: 'SET_MODELS', payload: modelItems });
         } else {
-          const currentMenuItems = [...models[objIdx].matThumbs];
+          const currentMenuItems: any[] = [...models[objIdx].matThumbs];
 
           dispatch({ type: 'SET_MENU_ITEMS', payload: currentMenuItems });
 
-          const activeModelName = `Group - ${models[objIdx].vendor}: ${models[objIdx].title}`;
+          const activeModelName: string = `Group - ${models[objIdx].vendor}: ${models[objIdx].title}`;
 
           if (activeModelName !== currentModelName) {
             const modelData = {
@@ -47,24 +51,26 @@ export const useModels = (models, objIdx) => {
               titleID: `${models[objIdx].vendor}: ${models[objIdx].title}`,
             };
 
-            const objectExist = scene.getObjectByName(currentModelName);
+            const objectExist: Object3D = scene.getObjectByName(
+              currentModelName
+            );
 
             if (!objectExist) {
-              const model = await Model(modelData);
+              const model: Object3D = await Model(modelData);
 
               scene.add(model);
             } else {
               objectExist.visible = false;
               animate();
 
-              const activeExistInObjects = scene.getObjectByName(
+              const activeExistInObjects: Object3D = scene.getObjectByName(
                 activeModelName
               );
 
               if (activeExistInObjects) {
                 activeExistInObjects.visible = true;
               } else {
-                const model = await Model(modelData);
+                const model: Object3D = await Model(modelData);
 
                 scene.add(model);
               }
@@ -85,7 +91,7 @@ export const useModels = (models, objIdx) => {
   }, [models, objIdx]);
 };
 
-export function fetchObjects(url) {
+export function fetchObjects(url: string): Promise<any> {
   return new Promise(async function (resolve, reject) {
     var response = await fetch(url);
     var data = await response.json();
@@ -94,7 +100,7 @@ export function fetchObjects(url) {
   });
 }
 
-export function onDocumentMouseDown(event) {
+export function onDocumentMouseDown(event: MouseEvent): void {
   event.preventDefault();
   const { dispatch } = useStore();
 
@@ -109,15 +115,15 @@ export function onDocumentMouseDown(event) {
     dispatch({ type: 'TOGGLE_MENU', payload: false });
 
     if (
-      intersects[0].object.callback &&
-      typeof intersects[0].object.callback === 'function'
+      (intersects[0].object as any).callback &&
+      typeof (intersects[0].object as any).callback === 'function'
     ) {
-      intersects[0].object.callback();
+      (intersects[0].object as any).callback();
     }
   }
 }
 
-export function onDocumentTouchDown(event) {
+export function onDocumentTouchDown(event: TouchEvent): void {
   event.preventDefault();
   const { dispatch } = useStore();
 
@@ -132,15 +138,15 @@ export function onDocumentTouchDown(event) {
     dispatch({ type: 'TOGGLE_MENU', payload: false });
 
     if (
-      intersects[0].object.callback &&
-      typeof intersects[0].object.callback === 'function'
+      (intersects[0].object as any).callback &&
+      typeof (intersects[0].object as any).callback === 'function'
     ) {
-      intersects[0].object.callback();
+      (intersects[0].object as any).callback();
     }
   }
 }
 
-export function onWindowResize() {
+export function onWindowResize(): void {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
@@ -149,12 +155,12 @@ export function onWindowResize() {
   animate();
 }
 
-export function handleScreenshots(callback) {
+export function handleScreenshots(callback?: () => void) {
   controls.enabled = false;
 
   const { dispatch } = useStore();
-  const strMime = 'image/png';
-  const newImagesArr = [];
+  const strMime: string = 'image/png';
+  const newImagesArr: string[] = [];
 
   camera.position.set(cameraPosChange.x, cameraPosChange.y, cameraPosChange.z);
   controls.update();

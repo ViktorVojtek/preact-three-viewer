@@ -1,4 +1,5 @@
-import React, { useEffect, Fragment } from 'react';
+import * as React from 'react';
+import { useEffect, Fragment } from 'react';
 import styled from 'styled-components';
 import { useStore } from './utils/store';
 import { useModels, handleScreenshots } from './utils';
@@ -25,7 +26,7 @@ const OrderFormBtn = styled.button`
   outline: none;
 `;
 
-export default () => {
+export default function (): JSX.Element {
   const { state, dispatch } = useStore();
   const {
     menuItems,
@@ -43,7 +44,7 @@ export default () => {
   }, []);
   useModels(models, objIdx);
 
-  const handleToggleForm = () => {
+  const handleToggleForm: () => void = () => {
     dispatch({ type: 'TOGGLE_FORM', payload: true });
     handleScreenshots();
   };
@@ -67,4 +68,4 @@ export default () => {
       <Menu show={showMenu} items={menuItems} />
     </AppWrapper>
   );
-};
+}

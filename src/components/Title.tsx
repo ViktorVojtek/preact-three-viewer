@@ -1,3 +1,4 @@
+import * as React from 'react';
 import styled from 'styled-components';
 
 const H4 = styled.h4`
@@ -8,4 +9,6 @@ const H4 = styled.h4`
   position: absolute;
 `;
 
-export default ({ title }) => <H4>{title}</H4>;
+export default function ({ title }: { title: string }): JSX.Element {
+  return <H4>{title}</H4>;
+}
