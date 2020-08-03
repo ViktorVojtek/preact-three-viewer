@@ -1,0 +1,24 @@
+[
+  {
+    "vendor": "Cybex",
+    "type": "Stroller",
+    "title": "Priam",
+    "matThumbs": [
+      "../static/images/material_set/cybex/1.png",
+      "../static/images/material_set/cybex/2.png",
+      "../static/images/material_set/cybex/3.png",
+      "../static/images/material_set/cybex/4.png",
+      "../static/images/material_set/cybex/5.png",
+      "../static/images/material_set/cybex/6.png",
+      "../static/images/material_set/cybex/7.png"
+    ],
+    "model": ["../static/models/cybex/stroller/priam/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/cybex/stroller/priam/textures/Latka_white2.png"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.001
+  }
+]

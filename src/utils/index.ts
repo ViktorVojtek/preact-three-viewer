@@ -12,6 +12,7 @@ import {
 } from './constants';
 import Model from '../components/Model';
 import { useStore } from './store';
+import { vendor } from './constants';
 
 export function animate(): void {
   // requestAnimationFrame(animate);
@@ -30,7 +31,7 @@ export const useModels: (models: any, objIdx: number) => void = (
     (async function () {
       try {
         if (models.length < 1) {
-          const modelItems = await fetchObjects('./data.json');
+          const modelItems = await fetchObjects(`./${vendor}/data.json`);
 
           dispatch({ type: 'SET_MODELS', payload: modelItems });
         } else {

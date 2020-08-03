@@ -1,0 +1,122 @@
+[
+  {
+    "vendor": "Javorina",
+    "type": "Bed",
+    "title": "Posteľ - Terra",
+    "matThumbs": [
+      "../static/images/material_set/javorina/natur.png",
+      "../static/images/material_set/javorina/whitewashed.png",
+      "../static/images/material_set/javorina/coffee.png"
+    ],
+    "model": ["../static/models/javorina/beds/terra/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/javorina/beds/terra/textures/1.jpg"
+      },
+      {
+        "map": "../static/models/javorina/beds/terra/textures/2.jpg"
+      },
+      {
+        "map": "../static/models/javorina/beds/terra/textures/3.jpg"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.001
+  },
+  {
+    "vendor": "Javorina",
+    "type": "Bed",
+    "title": "Posteľ - Tatran",
+    "matThumbs": [
+      "../static/images/material_set/javorina/natur.png",
+      "../static/images/material_set/javorina/whitewashed.png",
+      "../static/images/material_set/javorina/coffee.png"
+    ],
+    "model": ["../static/models/javorina/beds/tatran/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/javorina/beds/tatran/textures/1.jpg"
+      },
+      {
+        "map": "../static/models/javorina/beds/tatran/textures/2.jpg"
+      },
+      {
+        "map": "../static/models/javorina/beds/tatran/textures/3.jpg"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.001
+  },
+  {
+    "vendor": "Javorina",
+    "type": "Chair",
+    "title": "Stolička - Inka",
+    "matThumbs": [
+      "../static/images/material_set/javorina/natur.png",
+      "../static/images/material_set/javorina/whitewashed.png",
+      "../static/images/material_set/javorina/coffee.png"
+    ],
+    "model": ["../static/models/javorina/chair/inka/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/javorina/chair/inka/textures/1.jpg"
+      },
+      {
+        "map": "../static/models/javorina/chair/inka/textures/2.jpg"
+      },
+      {
+        "map": "../static/models/javorina/chair/inka/textures/3.jpg"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.0015
+  },
+  {
+    "vendor": "Javorina",
+    "type": "Cupboard",
+    "title": "Komoda - Terra",
+    "matThumbs": [
+      "../static/images/material_set/javorina/natur.png",
+      "../static/images/material_set/javorina/whitewashed.png",
+      "../static/images/material_set/javorina/coffee.png"
+    ],
+    "model": ["../static/models/javorina/cupboard/terra/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/javorina/cupboard/terra/textures/1.jpg"
+      },
+      {
+        "map": "../static/models/javorina/cupboard/terra/textures/2.jpg"
+      },
+      {
+        "map": "../static/models/javorina/cupboard/terra/textures/3.jpg"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.00125
+  },
+  {
+    "vendor": "Javorina",
+    "type": "Table",
+    "title": "Stôl - Pure",
+    "matThumbs": [
+      "../static/images/material_set/javorina/natur.png",
+      "../static/images/material_set/javorina/whitewashed.png",
+      "../static/images/material_set/javorina/coffee.png"
+    ],
+    "model": ["../static/models/javorina/table/pure/model.json"],
+    "textures": [
+      {
+        "map": "../static/models/javorina/table/pure/textures/1.jpg"
+      },
+      {
+        "map": "../static/models/javorina/table/pure/textures/2.jpg"
+      },
+      {
+        "map": "../static/models/javorina/table/pure/textures/3.jpg"
+      }
+    ],
+    "position": [0, 0, 0],
+    "scale": 0.001
+  }
+]
