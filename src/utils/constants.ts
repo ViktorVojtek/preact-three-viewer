@@ -13,7 +13,7 @@ export type cameraPos = {
   z: number;
 };
 
-export const vendor: string = 'cybex';
+export const vendor: string = 'javorina';
 export const cameraPosStart: cameraPos = { x: 1.5, y: 2, z: 2 };
 export const cameraPosChange: cameraPos = { x: 0, y: 1, z: 3 };
 export const scene: Scene = new Scene();

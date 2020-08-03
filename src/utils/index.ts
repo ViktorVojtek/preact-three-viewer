@@ -20,6 +20,13 @@ export function animate(): void {
   renderer.render(scene, camera);
 }
 
+export const useRouter = () => {
+  useEffect(() => {
+    const location = window.location;
+    console.log(location);
+  }, []);
+};
+
 export const useModels: (models: any, objIdx: number) => void = (
   models,
   objIdx

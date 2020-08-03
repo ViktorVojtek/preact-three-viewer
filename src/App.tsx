@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, Fragment } from 'react';
 import styled from 'styled-components';
 import { useStore } from './utils/store';
-import { useModels, handleScreenshots } from './utils';
+import { useRouter, useModels, handleScreenshots } from './utils';
 import initScene from './init';
 import Menu from './components/Menu';
 import Button from './components/Button';
@@ -39,9 +39,12 @@ export default function (): JSX.Element {
     loaded,
   } = state;
 
+  useRouter();
+
   useEffect(() => {
     initScene();
   }, []);
+  // Load 3D mode according to objIdx
   useModels(models, objIdx);
 
   const handleToggleForm: () => void = () => {
